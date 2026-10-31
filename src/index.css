@@ -1,0 +1,206 @@
+/* ==========================================================================
+   Music maniac - Global Theme & Styles (Spotify Aesthetic)
+   ========================================================================== */
+
+:root {
+  --bg-black: #000000;
+  --bg-base: #121212;
+  --bg-surface: #181818;
+  --bg-card: #181818;
+  --bg-card-hover: #282828;
+  --bg-elevated: #242424;
+  --bg-highlight: #2a2a2a;
+  --border-subtle: #292929;
+  
+  --text-base: #ffffff;
+  --text-subdued: #a7a7a7;
+  --text-muted: #6a6a6a;
+  
+  --primary-green: #1db954;
+  --primary-green-bright: #1ed760;
+  --primary-green-active: #169c46;
+  
+  --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --sidebar-width: 260px;
+  --player-height: 90px;
+  --topbar-height: 64px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-black);
+  color: var(--text-base);
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Scrollbar customization */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* Custom Range Slider */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  width: 100%;
+  height: 12px;
+  position: relative;
+}
+
+input[type="range"]:focus {
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 2px;
+  background: #4d4d4d;
+  transition: background-color 0.2s;
+}
+
+input[type="range"]:hover::-webkit-slider-runnable-track {
+  background: #5e5e5e;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  background: #ffffff;
+  margin-top: -4px;
+  opacity: 0;
+  transition: opacity 0.15s, transform 0.15s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.range-container:hover input[type="range"]::-webkit-slider-thumb,
+input[type="range"]:active::-webkit-slider-thumb {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* Equalizer Bars Animation */
+.equalizer {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 14px;
+  width: 14px;
+}
+
+.eq-bar {
+  background-color: var(--primary-green-bright);
+  width: 3px;
+  border-radius: 1px;
+  animation: bounce 1.2s ease infinite alternate;
+}
+
+.eq-bar:nth-child(1) { height: 60%; animation-delay: 0.1s; }
+.eq-bar:nth-child(2) { height: 100%; animation-delay: 0.3s; }
+.eq-bar:nth-child(3) { height: 40%; animation-delay: 0.2s; }
+.eq-bar:nth-child(4) { height: 80%; animation-delay: 0.4s; }
+
+@keyframes bounce {
+  0% { height: 20%; }
+  100% { height: 100%; }
+}
+
+/* Play button hover bounce & drop shadow */
+.play-btn-circle {
+  transition: transform 0.2s cubic-bezier(0.3, 0, 0, 1), box-shadow 0.2s, background-color 0.2s;
+}
+.play-btn-circle:hover {
+  transform: scale(1.06);
+  background-color: var(--primary-green-bright);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+.play-btn-circle:active {
+  transform: scale(0.98);
+}
+
+/* Card hover animation */
+.spotify-card {
+  transition: background-color 0.25s ease, transform 0.2s ease;
+}
+.spotify-card:hover {
+  background-color: var(--bg-card-hover);
+}
+.spotify-card .hover-play {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+.spotify-card:hover .hover-play {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Track row styling */
+.track-row {
+  transition: background-color 0.15s ease;
+}
+.track-row:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.track-row.active {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+.track-row .row-play-btn {
+  display: none;
+}
+.track-row:hover .row-index {
+  display: none;
+}
+.track-row:hover .row-play-btn {
+  display: flex;
+}
+
+/* Subtle line clamp */
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
